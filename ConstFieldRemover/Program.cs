@@ -15,14 +15,17 @@ namespace ConstFieldRemover
 
             string path = args[0];
             string output = null;
+            var access = FileAccess.ReadWrite;
+
 
             if (args.Length > 1)
             {
                 output = args[1];
+                access = FileAccess.Read;
             }
 
-            using (var fs = File.Open(path, FileMode.Open, FileAccess.ReadWrite))
-            using (var ad = AssemblyDefinition.ReadAssembly(path))
+            using (var fs = File.Open(path, FileMode.Open, access))
+            using (var ad = AssemblyDefinition.ReadAssembly(fs))
             {
                 List<FieldDefinition> fields = new List<FieldDefinition>();
 
