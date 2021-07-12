@@ -24,8 +24,19 @@ namespace ConstFieldRemover
                 access = FileAccess.Read;
             }
 
+            ReaderParameters paramter = new ReaderParameters();
+            var assemblyResolver = new DefaultAssemblyResolver();
+            assemblyResolver.AddSearchDirectory(Path.GetDirectoryName(path));
+            
+            if (args.Length > 2)
+            {
+                assemblyResolver.AddSearchDirectory(args[2]);
+            }
+
+            paramter.AssemblyResolver = assemblyResolver;
+
             using (var fs = File.Open(path, FileMode.Open, access))
-            using (var ad = AssemblyDefinition.ReadAssembly(fs))
+            using (var ad = AssemblyDefinition.ReadAssembly(fs, paramter))
             {
                 List<FieldDefinition> fields = new List<FieldDefinition>();
 
