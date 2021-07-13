@@ -17,20 +17,26 @@ namespace ConstFieldRemover
             string output = null;
             var access = FileAccess.ReadWrite;
 
-
-            if (args.Length > 1)
-            {
-                output = args[1];
-                access = FileAccess.Read;
-            }
-
             ReaderParameters paramter = new ReaderParameters();
             var assemblyResolver = new DefaultAssemblyResolver();
             assemblyResolver.AddSearchDirectory(Path.GetDirectoryName(path));
             
-            if (args.Length > 2)
+            if (args.Length > 1)
             {
-                assemblyResolver.AddSearchDirectory(args[2]);
+                for (int i = 1; i < args.Length; i++)
+                {
+                    if (args[i] == "-o" && i + 1 < args.Length)
+                    {
+                        output = args[i + 1];
+                        access = FileAccess.Read;
+                        i++;
+                    }
+                    else if (args[i] == "-s" && i + 1 < args.Length)
+                    {
+                        assemblyResolver.AddSearchDirectory(args[i + 1]);
+                        i++;
+                    }
+                }
             }
 
             paramter.AssemblyResolver = assemblyResolver;
