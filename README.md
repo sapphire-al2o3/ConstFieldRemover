@@ -115,3 +115,29 @@ DLLからconstフィーイルドを取り除く
 
 } // end of class TestDLL.Test
 ```
+
+## UnityのIL2CPPビルドで使用する
+
+```csharp
+using UnityEngine;
+using UnityEditor.Build;
+using UnityEditor.Build.Reporting;
+using UnityEditor.Il2Cpp;
+using UnityEditor;
+
+public class PreIL2CPP : IIl2CppProcessor
+{
+    public int callbackOrder => 0;
+
+    public void OnBeforeConvertRun(BuildReport report, Il2CppBuildPipelineData data)
+    {
+        string dllPath = data.inputDirectory + "/Assembly-CSharp.dll";
+        if (System.IO.File.Exists(dllPath))
+        {
+            var proc = System.Diagnostics.Process.Start("ConstFieldRemover.exe", dllPath);
+            proc.WaitForExit();
+            Debug.Log(proc.ExitCode);
+        }
+    }
+}
+```
