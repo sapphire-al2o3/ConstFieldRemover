@@ -1,6 +1,6 @@
 # ConstFieldRemover
 
-ILからconstフィールドを取り除く
+ILからconstフィールドを取り除くツール
 
 ```csharp
 using System;
@@ -117,6 +117,8 @@ DLLからconstフィーイルドを取り除く
 ```
 
 ## UnityのIL2CPPビルドで使用する
+
+IL2CPPの前処理としてconstフィールドを取り除いてビルドをする。
 
 ```csharp
 using UnityEngine;
