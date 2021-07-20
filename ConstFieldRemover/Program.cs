@@ -6,6 +6,31 @@ namespace ConstFieldRemover
 {
     class Program
     {
+        static void RemoveConstField(TypeDefinition t, List<FieldDefinition> fields)
+        {
+            if (t.HasNestedTypes)
+            {
+                foreach (var nt in t.NestedTypes)
+                {
+                    RemoveConstField(nt, fields);
+                }
+            }
+
+            fields.Clear();
+            foreach (var f in t.Fields)
+            {
+                if (f.HasConstant)
+                {
+                    fields.Add(f);
+                }
+            }
+
+            foreach (var f in fields)
+            {
+                t.Fields.Remove(f);
+            }
+        }
+
         static void Main(string[] args)
         {
             if (args.Length < 1)
@@ -50,18 +75,7 @@ namespace ConstFieldRemover
                 {
                     foreach (var t in mod.Types)
                     {
-                        fields.Clear();
-                        foreach (var f in t.Fields)
-                        {
-                            if (f.HasConstant)
-                            {
-                                fields.Add(f);
-                            }
-                        }
-                        foreach (var f in fields)
-                        {
-                            t.Fields.Remove(f);
-                        }
+                        RemoveConstField(t, fields);
                     }
                 }
 
