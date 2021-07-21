@@ -2,6 +2,10 @@
 
 ILからconstフィールドを取り除くツール
 
+## 説明
+
+以下のクラスのフィールドにconstを使ったコードでDLLを生成するする。
+
 ```csharp
 using System;
 
@@ -22,7 +26,7 @@ namespace TestDLL
 }
 ```
 
-DLLをildasmでILをダンプ
+生成されたDLLをildasmでILをダンプするとliteralフィールドが含まれる。
 
 ```
 .class public auto ansi beforefieldinit TestDLL.Test
