@@ -77,7 +77,7 @@ DLLからconstフィーイルドを取り除く
 > ConstFieldRemover TestDLL.dll -o TestDLL_fix.DLL
 ```
 
-変換後のDLLのILダンプ
+変換後のDLLのILダンプからはliteralフィールドが取り除かれる。
 ```
 .class public auto ansi beforefieldinit TestDLL.Test
        extends [System.Runtime]System.Object
