@@ -1,6 +1,6 @@
 # ConstFieldRemover
 
-ILからconstフィールドを取り除くツール
+DLLやexeに含まれるILからconstフィールドを取り除くツール
 
 ## 説明
 
