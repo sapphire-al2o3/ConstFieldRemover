@@ -71,10 +71,10 @@ namespace TestDLL
 } // end of class TestDLL.Test
 ```
 
-DLLからconstフィーイルドを取り除く
+DLLからconstフィーイルドを取り除く。
 
 ```
-> ConstFieldRemover TestDLL.dll -o TestDLL_fix.DLL
+> ConstFieldRemover.exe TestDLL.dll -o TestDLL_fix.DLL
 ```
 
 変換後のDLLのILダンプからはliteralフィールドが取り除かれる。
