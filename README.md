@@ -4,7 +4,7 @@ DLLやexeに含まれるILからconstフィールドを取り除くツール
 
 ## 説明
 
-以下のクラスのフィールドにconstを使ったコードでDLLを生成するする。
+クラスのフィールドにconstを使ったコードをビルドしてDLLを生成する。
 
 ```csharp
 using System;
