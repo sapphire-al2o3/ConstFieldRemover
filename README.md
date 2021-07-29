@@ -78,6 +78,8 @@ DLLからconstフィーイルドを取り除く。
 ```
 
 変換後のDLLのILダンプからはliteralフィールドが取り除かれる。
+取り除かれたフィールドの分だけDLLのサイズが削減できる。
+
 ```
 .class public auto ansi beforefieldinit TestDLL.Test
        extends [System.Runtime]System.Object
@@ -122,7 +124,7 @@ DLLからconstフィーイルドを取り除く。
 
 ## UnityのIL2CPPビルドで使用する
 
-IL2CPPの前処理としてconstフィールドを取り除いてビルドをする。
+IL2CPPの前処理として呼び出される `OnBeforeConvertRun` でconstフィールドを取り除いてビルドをする。
 
 ```csharp
 using UnityEngine;
