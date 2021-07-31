@@ -71,14 +71,14 @@ namespace TestDLL
 } // end of class TestDLL.Test
 ```
 
-DLLからconstフィーイルドを取り除く。
+DLLからconstフィールドを取り除く。
 
 ```
 > ConstFieldRemover.exe TestDLL.dll -o TestDLL_fix.DLL
 ```
 
 変換後のDLLのILダンプからはliteralフィールドが取り除かれる。
-取り除かれたフィールドの分だけDLLのサイズが削減できる。
+取り除かれたliteralフィールドの分だけDLLのサイズが削減できる。
 
 ```
 .class public auto ansi beforefieldinit TestDLL.Test
@@ -124,7 +124,8 @@ DLLからconstフィーイルドを取り除く。
 
 ## UnityのIL2CPPビルドで使用する
 
-IL2CPPの前処理として呼び出される `OnBeforeConvertRun` でconstフィールドを取り除いてビルドをする。
+IL2CPPの前処理として呼び出される `IIl2CppProcessor.OnBeforeConvertRun` でconstフィールドを取り除いてビルドをする。
+https://docs.unity3d.com/ScriptReference/Build.IIl2CppProcessor.OnBeforeConvertRun.html
 
 ```csharp
 using UnityEngine;
